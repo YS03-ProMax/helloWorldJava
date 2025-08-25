@@ -1,12 +1,15 @@
 apply plugin: 'java'
-apply plugin:'jacoco'
+apply plugin: 'jacoco'
+
 jacoco {
     toolVersion = "0.8.7"
 }
+
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
+
 group = 'com.example'
 version = 'V1'
 
@@ -27,17 +30,17 @@ test {
         // Configure which events to log during test execution
         events 'passed', 'skipped', 'failed'
     }
+
     finalizedBy jacocoTestReport
 }
 
- jar {
+jar {
     manifest {
-        attributes 'Main-Class': 'com.example.HelloWorld'        
+        attributes 'Main-Class': 'com.example.HelloWorld'
     }
-
-    from sourceSets.main.output  // Include compiled classes in the JAR
-    archiveBaseName = 'hello-world-java'  // Name of the JAR file
-    destinationDirectory = file('build/libs')  // Output directory for the JAR file
+    from sourceSets.main.output // Include compiled classes in the JAR
+    archiveBaseName = 'hello-world-java' // Name of the JAR file
+    destinationDirectory = file('build/libs') // Output directory for the JAR file
 }
 
 jacocoTestReport {
